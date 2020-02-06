@@ -19,6 +19,8 @@
   "homepage": "https://github.com/zphoenixz/not-amazon-app-backend#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "mongoose": "^5.8.11",
     "nodemon": "^2.0.2"
   }
 }

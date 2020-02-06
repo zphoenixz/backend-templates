@@ -1,5 +1,8 @@
+// npm install --save express-validator
+// npm install --save mongoose
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const feedRoutes = require('./routes/feed');
 const app = express();
