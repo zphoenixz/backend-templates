@@ -2,6 +2,8 @@
 // npm install --save mongodb
 // npm install --save mongoose
 // npm install --save multer
+// npm install --save bcryptjs
+// npm install --save jsonwebtoken
 //mongo db user ramiro pwd ramiro29
 // mongodb+srv://ramiro:<password>@phzcluster0-9pdn0.mongodb.net/test?retryWrites=true&w=majority
 const path = require('path');
@@ -14,6 +16,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 
 const feedRoutes = require('./routes/feed');
+const authRoutes = require('./routes/auth');
 const app = express();
 
 const fileStorage = multer.diskStorage({
@@ -50,11 +53,13 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/feed', feedRoutes);
+app.use('/auth', authRoutes);
 app.use((error, req, res, next) => {
     console.log(error);
     const status = error.statusCode || 500;
     const message = error.message;
-    res.status(status).json({ message: message});
+    const data = error.data;
+    res.status(status).json({ message: message, data: data});
 });
 
 mongoose.connect(
